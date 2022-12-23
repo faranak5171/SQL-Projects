@@ -20,7 +20,7 @@ on mc.meal=y.meal
 Select * from #temp_Cost_2020
 
 
-Select meal,avg(cost) average_cost_2020, sum(cost) total_cost_2020, min(cost) 
+Select meal,avg(cost) average_cost_2020, sum(cost) total_cost_2020, min(cost) min_cost
 from #temp_Cost_2020
 GROUP BY meal;
 
