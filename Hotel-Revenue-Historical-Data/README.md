@@ -9,3 +9,6 @@ Using CTE to do recursive queries for showing employees' hierarchy at hotel.
 Creating pivot tables to aggregate the data for visualization and data analysis.
 
 Using window functions in aggregattion functions, ranking and filtering a portion of rows (frame).
+
+Define and execute stored procedures with input and output parameters.
+
