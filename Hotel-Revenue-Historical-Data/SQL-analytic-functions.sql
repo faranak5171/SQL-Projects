@@ -5,7 +5,7 @@
 
 	Functions:
 		Aggregate - COUNT,SUM,AVG,MIN,MAX
-		Offset - FIRST_VALUE, LAST_VALUE, LEAD, LAG
+		navigational - FIRST_VALUE, LAST_VALUE, LEAD, LAG
 		Statistical - PERCENT_RANK, CUME_DIST, PERCENTILE_COUNT, PERCENTILE_DISC
 		Ranking - ROW_NUMBER, RANK, DENSE_RANK, NTILE
 
@@ -49,4 +49,17 @@ SELECT
 	count(job_id) over (partition by job_id) as Count_Employee_JobID
 FROM dbo.employees
 order by salary
+
+
+--LAG, Returns value from previous row
+--LEAD, Returns value from next row
+select
+	first_name, 
+	last_name,
+	hire_date,
+	department_id,
+	salary,
+	LAG(salary) over (partition by department_id order by salary) as [Previous Salary],
+	LEAD(salary) over (partition by department_id order by salary) as [Next Salary]
+FROM dbo.employees
 
