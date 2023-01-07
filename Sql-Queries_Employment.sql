@@ -44,37 +44,21 @@ from Employment
 where mgr=7369
 
 
---Display all the details of the emps whose Comm. Is more than their Sal.
-A) select * from emp where comm. > sal;
-2.12. List the emps in the asc order of Designations of those joined after the
-second half of 1981.
-A) select * from emp where hiredate > (’30-jun-81’) and
-to_char(hiredate,’YYYY’) = 1981 order by job asc;
-2.13. List the emps along with their Exp and Daily Sal is more than Rs.100.
-A) select * from emp where (sal/30) >100;
-2.14. List the emps who are either ‘CLERK’ or ‘ANALYST’ in the Desc
-order.
-A) select * from emp where job = ‘CLERK’ or job = ‘ANALYST’ order by job
-desc;
-2.15. List the emps who joined on 1-MAY-81,3-DEC-81,17-DEC-81,19-JAN-
-80 in asc order of seniority.
-A) select * from emp where hiredate in (’01-may-81’,’03-dec-81’,’17-dec-
-81’,’19-jan-80’) order by hiredate asc;
-2.16. List the emp who are working for the Deptno 10 or20.
-A) select * from emp where deptno = 10 or deptno = 20 ;
-2.17. List the emps who are joined in the year 81.
-A) select * from emp where hiredate between ’01-jan-81’ and ’31-dec-81’;
-2.18. List the emps who are joined in the month of Aug 1980.
-C) select * from emp where hiredate between ’01-aug-80’ and ’31-aug-80’;
-(OR)
-select * from emp where to_char(hiredate,’mon-yyyy’) =’aug-1980;
-2.19. List the emps Who Annual sal ranging from 22000 and 45000.
-A) select * from emp where 12*sal between 22000 and 45000;
-2.20. List the Enames those are having five characters in their Names.
-A) select ename from emp where length (ename) = 5;
-2.21. List the Enames those are starting with ‘S’ and with five characters.
-A) select ename from emp where ename like ‘S%’ and length (ename) = 5;
-2.22. List the emps those are having four chars and third character must be ‘r’.
-A) select * from emp where length(ename) = 4 and ename like ‘__R%’;
-2.23. List the Five character names starting with ‘S’ and ending with ‘H’.
-A) select * from emp where length(ename) = 5 and ename like ‘S%H’;
+--Display all the details of the emps whose commision amount is more than their Sal.
+select * from Employment where commision > salary
+
+--List the emps in the asc order of Designations of those joined after the second half of 1981.
+select *, year(hire_date) as Start_Year from Employment where hire_date > ('1981-06-30') order by hire_date asc
+
+--List the emps along with their experience and Daily Salary is more than Rs.50
+select * from Employment where (salary/30) > 50;
+
+--List the emps who are either ‘CLERK’ or ‘ANALYST’ in the Desc order.
+select * from Employment where job in ('clerk','analyst') order by job desc
+
+--List the Enames those are having five characters in their Names.
+select ename from Employment where len(ename)=5
+
+--List the Five character names starting with ‘S’ and ending with ‘H’.
+select * from Employment where len(ename)=5 and ename like 's%h'
+
