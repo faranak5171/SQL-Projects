@@ -63,3 +63,30 @@ select
 	LEAD(salary) over (partition by department_id order by salary) as [Next Salary]
 FROM dbo.employees
 
+
+/*
+	Write an SQL query to display the records with three or more rows with consecutive id's, 
+	and the number of people is greater than or equal to 100 for each.
+*/
+with temp as (
+select
+    id,
+    visit_date,
+    people,
+    lag(id,1) over (order by id) as prev_1id,
+    lag(id,2) over (order by id) as prev_2id,
+    lead(id,1) over (order by id) as next_1id,
+    lead(id,2) over (order by id) as next_2id
+from Stadium
+WHERE people>=100
+),
+temp2 as(
+    select
+        *,
+        case when id = next_1id -1 and id = next_2id -2 then 'Cons'
+             when id = prev_1id + 1 and id = next_1id -1 then 'Cons'
+             when id = prev_1id + 1 and id = prev_2id + 2 then 'cons'
+             else 'No' end as flag
+    from temp
+)
+select id, visit_date, people from temp2 where flag='Cons'
